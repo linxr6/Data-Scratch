@@ -11,7 +11,7 @@ from datetime import datetime, timedelta
 import os
 
 os.chdir('D:\\FX')
-TOKEN = '858f38c91f7e718f796d6e0e782653f42eb149d5'
+TOKEN = 'XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX' # Your own token, can apply freely in FXCM
 con = fxcmpy.fxcmpy(access_token=TOKEN, log_level='error', server='demo', log_file='log.txt')
 instruments = con.get_instruments()
 
@@ -31,15 +31,8 @@ for period in periods:
     for key in item:
         data = con.get_candles(key, period=period, start=start, end=end)
         key = key.replace('/','-')
-        data.to_excel('D:\\FX\\'+period+'\\'+'H4_'+key+'.xlsx')
+        data.to_excel('D:\\FX\\'+period+'\\'+period+'_'+key+'.xlsx')
         
-
-# %%  Data Preprocessing
-
-for key in item:
-    key = key.replace('/','-')
-    data = pd.read_excel('D:\\FX\\'+'monthly'+'\\'+'M_'+key+'.xlsx')
-    data['month'] = data['date'].dt.month
         
         
         
